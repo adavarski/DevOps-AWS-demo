@@ -1,0 +1,140 @@
+Started by user Anastas Davarski
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Jenkinsfile-RDS
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone AWS Demo Repository)
+[Pipeline] checkout
+[2021-01-12T17:12:46.777Z] The recommended git tool is: NONE
+[2021-01-12T17:12:46.780Z] using credential devops
+[2021-01-12T17:12:46.789Z]  > git rev-parse --is-inside-work-tree # timeout=10
+[2021-01-12T17:12:46.813Z] Fetching changes from the remote Git repository
+[2021-01-12T17:12:46.813Z]  > git config remote.origin.url git@github.com:adavarski/DevOps-AWS-demo.git # timeout=10
+[2021-01-12T17:12:46.819Z] Fetching upstream changes from git@github.com:adavarski/DevOps-AWS-demo.git
+[2021-01-12T17:12:46.819Z]  > git --version # timeout=10
+[2021-01-12T17:12:46.833Z]  > git --version # 'git version 2.17.1'
+[2021-01-12T17:12:46.833Z] using GIT_SSH to set credentials Github devops 
+[2021-01-12T17:12:46.844Z]  > git fetch --tags --progress -- git@github.com:adavarski/DevOps-AWS-demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2021-01-12T17:12:49.114Z]  > git rev-parse origin/main^{commit} # timeout=10
+[2021-01-12T17:12:49.130Z] Checking out Revision 12c3fcb12fda633191a28ee1fa7ca0c255b76581 (origin/main)
+[2021-01-12T17:12:49.130Z]  > git config core.sparsecheckout # timeout=10
+[2021-01-12T17:12:49.134Z]  > git checkout -f 12c3fcb12fda633191a28ee1fa7ca0c255b76581 # timeout=10
+[2021-01-12T17:12:49.149Z] Commit message: "Create variables.tf"
+[2021-01-12T17:12:49.150Z]  > git rev-list --no-walk 12c3fcb12fda633191a28ee1fa7ca0c255b76581 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF apply )
+Stage "TF apply " skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF Destroy)
+[Pipeline] dir
+[2021-01-12T17:12:49.460Z] Running in /var/lib/jenkins/workspace/Jenkinsfile-RDS/aws-tf/RDS
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2021-01-12T17:12:49.551Z] Masking supported pattern matches of $AWS_ACCESS_KEY_ID or $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] sh
+[2021-01-12T17:12:49.870Z] + terraform init
+[2021-01-12T17:12:50.121Z] 
+[2021-01-12T17:12:50.121Z] [0m[1mInitializing the backend...[0m
+[2021-01-12T17:12:51.033Z] 
+[2021-01-12T17:12:51.035Z] [0m[1mInitializing provider plugins...[0m
+[2021-01-12T17:12:51.035Z] - Reusing previous version of hashicorp/aws from the dependency lock file
+[2021-01-12T17:12:51.947Z] - Installing hashicorp/aws v3.23.0...
+[2021-01-12T17:13:09.915Z] - Installed hashicorp/aws v3.23.0 (signed by HashiCorp)
+[2021-01-12T17:13:09.915Z] 
+[2021-01-12T17:13:09.915Z] [33m
+[2021-01-12T17:13:09.915Z] [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+[2021-01-12T17:13:09.915Z] 
+[2021-01-12T17:13:09.915Z] [0m  on main.tf line 11, in resource "aws_db_instance" "db":
+[2021-01-12T17:13:09.915Z]   11:   password               = [4m"${var.database_password}"[0m
+[2021-01-12T17:13:09.915Z] [0m
+[2021-01-12T17:13:09.915Z] Terraform 0.11 and earlier required all non-constant expressions to be
+[2021-01-12T17:13:09.915Z] provided via interpolation syntax, but this pattern is now deprecated. To
+[2021-01-12T17:13:09.915Z] silence this warning, remove the "${ sequence from the start and the }"
+[2021-01-12T17:13:09.916Z] sequence from the end of this expression, leaving just the inner expression.
+[2021-01-12T17:13:09.917Z] 
+[2021-01-12T17:13:09.917Z] Template interpolation syntax is still used to construct strings from
+[2021-01-12T17:13:09.917Z] expressions when the template includes multiple interpolation sequences or a
+[2021-01-12T17:13:09.917Z] mixture of literal strings and interpolations. This deprecation applies only
+[2021-01-12T17:13:09.917Z] to templates that consist entirely of a single interpolation sequence.
+[2021-01-12T17:13:09.917Z] [0m[0m
+[2021-01-12T17:13:09.917Z] [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[2021-01-12T17:13:09.917Z] [0m[32m
+[2021-01-12T17:13:09.917Z] You may now begin working with Terraform. Try running "terraform plan" to see
+[2021-01-12T17:13:09.917Z] any changes that are required for your infrastructure. All Terraform commands
+[2021-01-12T17:13:09.917Z] should now work.
+[2021-01-12T17:13:09.917Z] 
+[2021-01-12T17:13:09.917Z] If you ever set or change modules or backend configuration for Terraform,
+[2021-01-12T17:13:09.917Z] rerun this command to reinitialize your working directory. If you forget, other
+[2021-01-12T17:13:09.917Z] commands will detect it and remind you to do so if necessary.[0m
+[Pipeline] sh
+[2021-01-12T17:13:10.217Z] + terraform destroy -auto-approve
+[2021-01-12T17:13:16.704Z] [0m[1maws_ssm_parameter.database_url: Destroying... [id=/demodb/demo/DATABASE_URL][0m[0m
+[2021-01-12T17:13:16.706Z] [0m[1maws_ssm_parameter.database_url: Destruction complete after 1s[0m[0m
+[2021-01-12T17:13:16.706Z] [0m[1maws_db_instance.db: Destroying... [id=demodb-postgres][0m[0m
+[2021-01-12T17:13:28.808Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 10s elapsed][0m[0m
+[2021-01-12T17:13:36.834Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 20s elapsed][0m[0m
+[2021-01-12T17:13:46.710Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 30s elapsed][0m[0m
+[2021-01-12T17:13:58.812Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 40s elapsed][0m[0m
+[2021-01-12T17:14:06.844Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 50s elapsed][0m[0m
+[2021-01-12T17:14:16.724Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 1m0s elapsed][0m[0m
+[2021-01-12T17:14:28.822Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 1m10s elapsed][0m[0m
+[2021-01-12T17:14:36.848Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 1m20s elapsed][0m[0m
+[2021-01-12T17:14:46.730Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 1m30s elapsed][0m[0m
+[2021-01-12T17:14:58.831Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 1m40s elapsed][0m[0m
+[2021-01-12T17:15:06.860Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 1m50s elapsed][0m[0m
+[2021-01-12T17:15:16.738Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 2m0s elapsed][0m[0m
+[2021-01-12T17:15:28.836Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 2m10s elapsed][0m[0m
+[2021-01-12T17:15:36.862Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 2m20s elapsed][0m[0m
+[2021-01-12T17:15:46.742Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 2m30s elapsed][0m[0m
+[2021-01-12T17:15:58.841Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 2m40s elapsed][0m[0m
+[2021-01-12T17:16:06.867Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 2m50s elapsed][0m[0m
+[2021-01-12T17:16:16.749Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 3m0s elapsed][0m[0m
+[2021-01-12T17:16:28.851Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 3m10s elapsed][0m[0m
+[2021-01-12T17:16:36.877Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 3m20s elapsed][0m[0m
+[2021-01-12T17:16:46.753Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 3m30s elapsed][0m[0m
+[2021-01-12T17:16:58.857Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 3m40s elapsed][0m[0m
+[2021-01-12T17:17:06.883Z] [0m[1maws_db_instance.db: Still destroying... [id=demodb-postgres, 3m50s elapsed][0m[0m
+[2021-01-12T17:17:08.746Z] [0m[1maws_db_instance.db: Destruction complete after 3m51s[0m[0m
+[2021-01-12T17:17:08.746Z] [33m
+[2021-01-12T17:17:08.746Z] [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+[2021-01-12T17:17:08.746Z] 
+[2021-01-12T17:17:08.746Z] [0m  on main.tf line 11, in resource "aws_db_instance" "db":
+[2021-01-12T17:17:08.747Z]   11:   password               = [4m"${var.database_password}"[0m
+[2021-01-12T17:17:08.747Z] [0m
+[2021-01-12T17:17:08.747Z] Terraform 0.11 and earlier required all non-constant expressions to be
+[2021-01-12T17:17:08.747Z] provided via interpolation syntax, but this pattern is now deprecated. To
+[2021-01-12T17:17:08.747Z] silence this warning, remove the "${ sequence from the start and the }"
+[2021-01-12T17:17:08.747Z] sequence from the end of this expression, leaving just the inner expression.
+[2021-01-12T17:17:08.747Z] 
+[2021-01-12T17:17:08.747Z] Template interpolation syntax is still used to construct strings from
+[2021-01-12T17:17:08.747Z] expressions when the template includes multiple interpolation sequences or a
+[2021-01-12T17:17:08.747Z] mixture of literal strings and interpolations. This deprecation applies only
+[2021-01-12T17:17:08.747Z] to templates that consist entirely of a single interpolation sequence.
+[2021-01-12T17:17:08.747Z] [0m[0m
+[2021-01-12T17:17:08.747Z] [0m[1m[32m
+[2021-01-12T17:17:08.747Z] Destroy complete! Resources: 2 destroyed.[0m
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

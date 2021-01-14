@@ -1,0 +1,199 @@
+Started by user Anastas Davarski
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Jenkinsfile-RDS
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone AWS Demo Repository)
+[Pipeline] checkout
+[2021-01-12T17:19:12.277Z] The recommended git tool is: NONE
+[2021-01-12T17:19:12.280Z] using credential devops
+[2021-01-12T17:19:12.297Z]  > git rev-parse --is-inside-work-tree # timeout=10
+[2021-01-12T17:19:12.320Z] Fetching changes from the remote Git repository
+[2021-01-12T17:19:12.321Z]  > git config remote.origin.url git@github.com:adavarski/DevOps-AWS-demo.git # timeout=10
+[2021-01-12T17:19:12.327Z] Fetching upstream changes from git@github.com:adavarski/DevOps-AWS-demo.git
+[2021-01-12T17:19:12.327Z]  > git --version # timeout=10
+[2021-01-12T17:19:12.331Z]  > git --version # 'git version 2.17.1'
+[2021-01-12T17:19:12.331Z] using GIT_SSH to set credentials Github devops 
+[2021-01-12T17:19:12.338Z]  > git fetch --tags --progress -- git@github.com:adavarski/DevOps-AWS-demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2021-01-12T17:19:14.572Z]  > git rev-parse origin/main^{commit} # timeout=10
+[2021-01-12T17:19:14.579Z] Checking out Revision 28675bdbd82ffc5d2cd5f06503ccdcf37e41c0fa (origin/main)
+[2021-01-12T17:19:14.579Z]  > git config core.sparsecheckout # timeout=10
+[2021-01-12T17:19:14.593Z]  > git checkout -f 28675bdbd82ffc5d2cd5f06503ccdcf37e41c0fa # timeout=10
+[2021-01-12T17:19:14.609Z] Commit message: "Create Jenkinsfile-RDS"
+[2021-01-12T17:19:14.609Z]  > git rev-list --no-walk 12c3fcb12fda633191a28ee1fa7ca0c255b76581 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF apply )
+[Pipeline] dir
+[2021-01-12T17:19:14.834Z] Running in /var/lib/jenkins/workspace/Jenkinsfile-RDS/aws-tf/RDS
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2021-01-12T17:19:14.926Z] Masking supported pattern matches of $AWS_ACCESS_KEY_ID or $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] sh
+[2021-01-12T17:19:15.239Z] + terraform init
+[2021-01-12T17:19:15.239Z] 
+[2021-01-12T17:19:15.239Z] [0m[1mInitializing the backend...[0m
+[2021-01-12T17:19:16.156Z] 
+[2021-01-12T17:19:16.156Z] [0m[1mInitializing provider plugins...[0m
+[2021-01-12T17:19:16.156Z] - Reusing previous version of hashicorp/aws from the dependency lock file
+[2021-01-12T17:19:17.075Z] - Installing hashicorp/aws v3.23.0...
+[2021-01-12T17:19:43.483Z] - Installed hashicorp/aws v3.23.0 (signed by HashiCorp)
+[2021-01-12T17:19:43.483Z] 
+[2021-01-12T17:19:43.483Z] [33m
+[2021-01-12T17:19:43.483Z] [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+[2021-01-12T17:19:43.483Z] 
+[2021-01-12T17:19:43.483Z] [0m  on main.tf line 11, in resource "aws_db_instance" "db":
+[2021-01-12T17:19:43.483Z]   11:   password               = [4m"${var.database_password}"[0m
+[2021-01-12T17:19:43.483Z] [0m
+[2021-01-12T17:19:43.483Z] Terraform 0.11 and earlier required all non-constant expressions to be
+[2021-01-12T17:19:43.483Z] provided via interpolation syntax, but this pattern is now deprecated. To
+[2021-01-12T17:19:43.483Z] silence this warning, remove the "${ sequence from the start and the }"
+[2021-01-12T17:19:43.483Z] sequence from the end of this expression, leaving just the inner expression.
+[2021-01-12T17:19:43.483Z] 
+[2021-01-12T17:19:43.484Z] Template interpolation syntax is still used to construct strings from
+[2021-01-12T17:19:43.485Z] expressions when the template includes multiple interpolation sequences or a
+[2021-01-12T17:19:43.485Z] mixture of literal strings and interpolations. This deprecation applies only
+[2021-01-12T17:19:43.485Z] to templates that consist entirely of a single interpolation sequence.
+[2021-01-12T17:19:43.485Z] [0m[0m
+[2021-01-12T17:19:43.485Z] [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[2021-01-12T17:19:43.485Z] [0m[32m
+[2021-01-12T17:19:43.485Z] You may now begin working with Terraform. Try running "terraform plan" to see
+[2021-01-12T17:19:43.485Z] any changes that are required for your infrastructure. All Terraform commands
+[2021-01-12T17:19:43.485Z] should now work.
+[2021-01-12T17:19:43.485Z] 
+[2021-01-12T17:19:43.485Z] If you ever set or change modules or backend configuration for Terraform,
+[2021-01-12T17:19:43.485Z] rerun this command to reinitialize your working directory. If you forget, other
+[2021-01-12T17:19:43.485Z] commands will detect it and remind you to do so if necessary.[0m
+[Pipeline] sh
+[2021-01-12T17:19:43.801Z] + terraform apply -auto-approve
+[2021-01-12T17:19:53.681Z] [0m[1maws_db_instance.db: Creating...[0m[0m
+[2021-01-12T17:20:05.783Z] [0m[1maws_db_instance.db: Still creating... [10s elapsed][0m[0m
+[2021-01-12T17:20:13.810Z] [0m[1maws_db_instance.db: Still creating... [20s elapsed][0m[0m
+[2021-01-12T17:20:23.696Z] [0m[1maws_db_instance.db: Still creating... [30s elapsed][0m[0m
+[2021-01-12T17:20:35.799Z] [0m[1maws_db_instance.db: Still creating... [40s elapsed][0m[0m
+[2021-01-12T17:20:43.834Z] [0m[1maws_db_instance.db: Still creating... [50s elapsed][0m[0m
+[2021-01-12T17:20:53.713Z] [0m[1maws_db_instance.db: Still creating... [1m0s elapsed][0m[0m
+[2021-01-12T17:21:05.816Z] [0m[1maws_db_instance.db: Still creating... [1m10s elapsed][0m[0m
+[2021-01-12T17:21:13.848Z] [0m[1maws_db_instance.db: Still creating... [1m20s elapsed][0m[0m
+[2021-01-12T17:21:23.727Z] [0m[1maws_db_instance.db: Still creating... [1m30s elapsed][0m[0m
+[2021-01-12T17:21:35.834Z] [0m[1maws_db_instance.db: Still creating... [1m40s elapsed][0m[0m
+[2021-01-12T17:21:43.865Z] [0m[1maws_db_instance.db: Still creating... [1m50s elapsed][0m[0m
+[2021-01-12T17:21:53.741Z] [0m[1maws_db_instance.db: Still creating... [2m0s elapsed][0m[0m
+[2021-01-12T17:22:05.839Z] [0m[1maws_db_instance.db: Still creating... [2m10s elapsed][0m[0m
+[2021-01-12T17:22:13.877Z] [0m[1maws_db_instance.db: Still creating... [2m20s elapsed][0m[0m
+[2021-01-12T17:22:23.760Z] [0m[1maws_db_instance.db: Still creating... [2m30s elapsed][0m[0m
+[2021-01-12T17:22:35.862Z] [0m[1maws_db_instance.db: Still creating... [2m40s elapsed][0m[0m
+[2021-01-12T17:22:43.896Z] [0m[1maws_db_instance.db: Still creating... [2m50s elapsed][0m[0m
+[2021-01-12T17:22:53.776Z] [0m[1maws_db_instance.db: Still creating... [3m0s elapsed][0m[0m
+[2021-01-12T17:22:55.640Z] [0m[1maws_db_instance.db: Creation complete after 3m2s [id=demodb-postgres][0m[0m
+[2021-01-12T17:22:55.891Z] [0m[1maws_ssm_parameter.database_url: Creating...[0m[0m
+[2021-01-12T17:23:00.013Z] [0m[1maws_ssm_parameter.database_url: Creation complete after 3s [id=/demodb/demo/DATABASE_URL][0m[0m
+[2021-01-12T17:23:00.013Z] [33m
+[2021-01-12T17:23:00.013Z] [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+[2021-01-12T17:23:00.013Z] 
+[2021-01-12T17:23:00.013Z] [0m  on main.tf line 11, in resource "aws_db_instance" "db":
+[2021-01-12T17:23:00.013Z]   11:   password               = [4m"${var.database_password}"[0m
+[2021-01-12T17:23:00.013Z] [0m
+[2021-01-12T17:23:00.014Z] Terraform 0.11 and earlier required all non-constant expressions to be
+[2021-01-12T17:23:00.014Z] provided via interpolation syntax, but this pattern is now deprecated. To
+[2021-01-12T17:23:00.014Z] silence this warning, remove the "${ sequence from the start and the }"
+[2021-01-12T17:23:00.014Z] sequence from the end of this expression, leaving just the inner expression.
+[2021-01-12T17:23:00.014Z] 
+[2021-01-12T17:23:00.014Z] Template interpolation syntax is still used to construct strings from
+[2021-01-12T17:23:00.014Z] expressions when the template includes multiple interpolation sequences or a
+[2021-01-12T17:23:00.014Z] mixture of literal strings and interpolations. This deprecation applies only
+[2021-01-12T17:23:00.014Z] to templates that consist entirely of a single interpolation sequence.
+[2021-01-12T17:23:00.014Z] [0m[0m
+[2021-01-12T17:23:00.014Z] [0m[1m[32m
+[2021-01-12T17:23:00.014Z] Apply complete! Resources: 2 added, 0 changed, 0 destroyed.[0m
+[Pipeline] sh
+[2021-01-12T17:23:00.315Z] + terraform show
+[2021-01-12T17:23:01.659Z] [0m# aws_db_instance.db:
+[2021-01-12T17:23:01.660Z] resource "aws_db_instance" "db" {
+[2021-01-12T17:23:01.660Z]     [1m[0maddress[0m[0m                               = "demodb-postgres.ci57iu38pu8h.us-east-2.rds.amazonaws.com"
+[2021-01-12T17:23:01.660Z]     [1m[0mallocated_storage[0m[0m                     = 5
+[2021-01-12T17:23:01.660Z]     [1m[0marn[0m[0m                                   = "arn:aws:rds:us-east-2:218645542363:db:demodb-postgres"
+[2021-01-12T17:23:01.660Z]     [1m[0mauto_minor_version_upgrade[0m[0m            = true
+[2021-01-12T17:23:01.660Z]     [1m[0mavailability_zone[0m[0m                     = "us-east-2a"
+[2021-01-12T17:23:01.660Z]     [1m[0mbackup_retention_period[0m[0m               = 0
+[2021-01-12T17:23:01.660Z]     [1m[0mbackup_window[0m[0m                         = "06:11-06:41"
+[2021-01-12T17:23:01.660Z]     [1m[0mca_cert_identifier[0m[0m                    = "rds-ca-2019"
+[2021-01-12T17:23:01.660Z]     [1m[0mcopy_tags_to_snapshot[0m[0m                 = false
+[2021-01-12T17:23:01.660Z]     [1m[0mdb_subnet_group_name[0m[0m                  = "default"
+[2021-01-12T17:23:01.660Z]     [1m[0mdelete_automated_backups[0m[0m              = true
+[2021-01-12T17:23:01.660Z]     [1m[0mdeletion_protection[0m[0m                   = false
+[2021-01-12T17:23:01.660Z]     [1m[0mendpoint[0m[0m                              = "demodb-postgres.ci57iu38pu8h.us-east-2.rds.amazonaws.com:5432"
+[2021-01-12T17:23:01.660Z]     [1m[0mengine[0m[0m                                = "postgres"
+[2021-01-12T17:23:01.660Z]     [1m[0mengine_version[0m[0m                        = "11.4"
+[2021-01-12T17:23:01.660Z]     [1m[0mfinal_snapshot_identifier[0m[0m             = "ci-postgres-backup"
+[2021-01-12T17:23:01.660Z]     [1m[0mhosted_zone_id[0m[0m                        = "Z2XHWR1WZ565X2"
+[2021-01-12T17:23:01.660Z]     [1m[0miam_database_authentication_enabled[0m[0m   = false
+[2021-01-12T17:23:01.660Z]     [1m[0mid[0m[0m                                    = "demodb-postgres"
+[2021-01-12T17:23:01.660Z]     [1m[0midentifier[0m[0m                            = "demodb-postgres"
+[2021-01-12T17:23:01.660Z]     [1m[0minstance_class[0m[0m                        = "db.t2.micro"
+[2021-01-12T17:23:01.660Z]     [1m[0miops[0m[0m                                  = 0
+[2021-01-12T17:23:01.660Z]     [1m[0mlatest_restorable_time[0m[0m                = "0001-01-01T00:00:00Z"
+[2021-01-12T17:23:01.660Z]     [1m[0mlicense_model[0m[0m                         = "postgresql-license"
+[2021-01-12T17:23:01.660Z]     [1m[0mmaintenance_window[0m[0m                    = "mon:04:31-mon:05:01"
+[2021-01-12T17:23:01.660Z]     [1m[0mmax_allocated_storage[0m[0m                 = 0
+[2021-01-12T17:23:01.660Z]     [1m[0mmonitoring_interval[0m[0m                   = 0
+[2021-01-12T17:23:01.660Z]     [1m[0mmulti_az[0m[0m                              = false
+[2021-01-12T17:23:01.660Z]     [1m[0mname[0m[0m                                  = "demodb"
+[2021-01-12T17:23:01.660Z]     [1m[0moption_group_name[0m[0m                     = "default:postgres-11"
+[2021-01-12T17:23:01.660Z]     [1m[0mparameter_group_name[0m[0m                  = "default.postgres11"
+[2021-01-12T17:23:01.660Z]     [1m[0mpassword[0m[0m                              = (sensitive value)
+[2021-01-12T17:23:01.660Z]     [1m[0mperformance_insights_enabled[0m[0m          = false
+[2021-01-12T17:23:01.660Z]     [1m[0mperformance_insights_retention_period[0m[0m = 0
+[2021-01-12T17:23:01.660Z]     [1m[0mport[0m[0m                                  = 5432
+[2021-01-12T17:23:01.660Z]     [1m[0mpublicly_accessible[0m[0m                   = false
+[2021-01-12T17:23:01.660Z]     [1m[0mreplicas[0m[0m                              = []
+[2021-01-12T17:23:01.660Z]     [1m[0mresource_id[0m[0m                           = "db-D6D4EOK32UNN7MSV46IGKFAQ34"
+[2021-01-12T17:23:01.660Z]     [1m[0mskip_final_snapshot[0m[0m                   = true
+[2021-01-12T17:23:01.660Z]     [1m[0mstatus[0m[0m                                = "available"
+[2021-01-12T17:23:01.660Z]     [1m[0mstorage_encrypted[0m[0m                     = false
+[2021-01-12T17:23:01.660Z]     [1m[0mstorage_type[0m[0m                          = "gp2"
+[2021-01-12T17:23:01.660Z]     [1m[0musername[0m[0m                              = "postgres"
+[2021-01-12T17:23:01.660Z]     [1m[0mvpc_security_group_ids[0m[0m                = [
+[2021-01-12T17:23:01.660Z]         "sg-0fc3eb7f",
+[2021-01-12T17:23:01.660Z]     ]
+[2021-01-12T17:23:01.660Z] }
+[2021-01-12T17:23:01.660Z] 
+[2021-01-12T17:23:01.660Z] # aws_ssm_parameter.database_url:
+[2021-01-12T17:23:01.660Z] resource "aws_ssm_parameter" "database_url" {
+[2021-01-12T17:23:01.660Z]     [1m[0marn[0m[0m       = "arn:aws:ssm:us-east-2:218645542363:parameter/demodb/demo/DATABASE_URL"
+[2021-01-12T17:23:01.666Z]     [1m[0mdata_type[0m[0m = "text"
+[2021-01-12T17:23:01.666Z]     [1m[0mid[0m[0m        = "/demodb/demo/DATABASE_URL"
+[2021-01-12T17:23:01.666Z]     [1m[0mkey_id[0m[0m    = "alias/aws/ssm"
+[2021-01-12T17:23:01.666Z]     [1m[0mname[0m[0m      = "/demodb/demo/DATABASE_URL"
+[2021-01-12T17:23:01.666Z]     [1m[0mtier[0m[0m      = "Standard"
+[2021-01-12T17:23:01.666Z]     [1m[0mtype[0m[0m      = "SecureString"
+[2021-01-12T17:23:01.666Z]     [1m[0mvalue[0m[0m     = (sensitive value)
+[2021-01-12T17:23:01.666Z]     [1m[0mversion[0m[0m   = 1
+[2021-01-12T17:23:01.666Z] }[0m[0m
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF Destroy)
+Stage "TF Destroy" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

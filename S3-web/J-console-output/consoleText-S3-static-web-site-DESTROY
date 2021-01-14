@@ -1,0 +1,90 @@
+Started by user Anastas Davarski
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Jenkinsfile-s3-web
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone AWS Demo Repository)
+[Pipeline] checkout
+[2021-01-12T15:23:59.079Z] The recommended git tool is: NONE
+[2021-01-12T15:23:59.079Z] using credential devops
+[2021-01-12T15:23:59.099Z]  > git rev-parse --is-inside-work-tree # timeout=10
+[2021-01-12T15:23:59.124Z] Fetching changes from the remote Git repository
+[2021-01-12T15:23:59.124Z]  > git config remote.origin.url git@github.com:adavarski/DevOps-AWS-demo.git # timeout=10
+[2021-01-12T15:23:59.128Z] Fetching upstream changes from git@github.com:adavarski/DevOps-AWS-demo.git
+[2021-01-12T15:23:59.128Z]  > git --version # timeout=10
+[2021-01-12T15:23:59.134Z]  > git --version # 'git version 2.17.1'
+[2021-01-12T15:23:59.135Z] using GIT_SSH to set credentials Github devops 
+[2021-01-12T15:23:59.143Z]  > git fetch --tags --progress -- git@github.com:adavarski/DevOps-AWS-demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2021-01-12T15:24:00.728Z]  > git rev-parse origin/main^{commit} # timeout=10
+[2021-01-12T15:24:00.735Z] Checking out Revision 28e2a296a323b5b7d4d14dcf9ee064958937fedc (origin/main)
+[2021-01-12T15:24:00.735Z]  > git config core.sparsecheckout # timeout=10
+[2021-01-12T15:24:00.746Z]  > git checkout -f 28e2a296a323b5b7d4d14dcf9ee064958937fedc # timeout=10
+[2021-01-12T15:24:00.756Z] Commit message: "Create Jenkinsfile-s3-web"
+[2021-01-12T15:24:00.756Z]  > git rev-list --no-walk 28e2a296a323b5b7d4d14dcf9ee064958937fedc # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF apply env)
+Stage "TF apply env" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Upload to S3)
+Stage "Upload to S3" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF Destroy env)
+[Pipeline] dir
+[2021-01-12T15:24:01.416Z] Running in /var/lib/jenkins/workspace/Jenkinsfile-s3-web/aws-tf/S3-web
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2021-01-12T15:24:01.538Z] Masking supported pattern matches of $AWS_ACCESS_KEY_ID or $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] sh
+[2021-01-12T15:24:01.842Z] + aws s3 rm s3://s3-static-website-demo/ --recursive
+[Pipeline] sh
+[2021-01-12T15:24:08.610Z] + terraform init
+[2021-01-12T15:24:08.610Z] 
+[2021-01-12T15:24:08.610Z] [0m[1mInitializing the backend...[0m
+[2021-01-12T15:24:09.523Z] 
+[2021-01-12T15:24:09.523Z] [0m[1mInitializing provider plugins...[0m
+[2021-01-12T15:24:09.523Z] - Reusing previous version of hashicorp/aws from the dependency lock file
+[2021-01-12T15:24:10.074Z] - Installing hashicorp/aws v3.23.0...
+[2021-01-12T15:24:36.480Z] - Installed hashicorp/aws v3.23.0 (signed by HashiCorp)
+[2021-01-12T15:24:36.480Z] 
+[2021-01-12T15:24:36.481Z] [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[2021-01-12T15:24:36.481Z] [0m[32m
+[2021-01-12T15:24:36.481Z] You may now begin working with Terraform. Try running "terraform plan" to see
+[2021-01-12T15:24:36.481Z] any changes that are required for your infrastructure. All Terraform commands
+[2021-01-12T15:24:36.481Z] should now work.
+[2021-01-12T15:24:36.481Z] 
+[2021-01-12T15:24:36.481Z] If you ever set or change modules or backend configuration for Terraform,
+[2021-01-12T15:24:36.481Z] rerun this command to reinitialize your working directory. If you forget, other
+[2021-01-12T15:24:36.481Z] commands will detect it and remind you to do so if necessary.[0m
+[Pipeline] sh
+[2021-01-12T15:24:36.764Z] + terraform destroy -auto-approve
+[2021-01-12T15:24:41.960Z] [0m[1maws_s3_bucket.s3-static-website-demo: Destroying... [id=s3-static-website-demo][0m[0m
+[2021-01-12T15:24:42.515Z] [0m[1maws_s3_bucket.s3-static-website-demo: Destruction complete after 1s[0m[0m
+[2021-01-12T15:24:42.515Z] [0m[1m[32m
+[2021-01-12T15:24:42.515Z] Destroy complete! Resources: 1 destroyed.[0m
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

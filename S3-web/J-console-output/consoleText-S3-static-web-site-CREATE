@@ -1,0 +1,90 @@
+Started by user Anastas Davarski
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Jenkinsfile-s3-web
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone AWS Demo Repository)
+[Pipeline] checkout
+[2021-01-12T15:19:49.273Z] The recommended git tool is: NONE
+[2021-01-12T15:19:49.274Z] using credential devops
+[2021-01-12T15:19:49.311Z]  > git rev-parse --is-inside-work-tree # timeout=10
+[2021-01-12T15:19:49.415Z] Fetching changes from the remote Git repository
+[2021-01-12T15:19:49.415Z]  > git config remote.origin.url git@github.com:adavarski/DevOps-AWS-demo.git # timeout=10
+[2021-01-12T15:19:49.420Z] Fetching upstream changes from git@github.com:adavarski/DevOps-AWS-demo.git
+[2021-01-12T15:19:49.421Z]  > git --version # timeout=10
+[2021-01-12T15:19:49.425Z]  > git --version # 'git version 2.17.1'
+[2021-01-12T15:19:49.425Z] using GIT_SSH to set credentials Github devops 
+[2021-01-12T15:19:49.439Z]  > git fetch --tags --progress -- git@github.com:adavarski/DevOps-AWS-demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2021-01-12T15:19:51.727Z]  > git rev-parse origin/main^{commit} # timeout=10
+[2021-01-12T15:19:51.734Z] Checking out Revision 28e2a296a323b5b7d4d14dcf9ee064958937fedc (origin/main)
+[2021-01-12T15:19:51.734Z]  > git config core.sparsecheckout # timeout=10
+[2021-01-12T15:19:51.739Z]  > git checkout -f 28e2a296a323b5b7d4d14dcf9ee064958937fedc # timeout=10
+[2021-01-12T15:19:51.750Z] Commit message: "Create Jenkinsfile-s3-web"
+[2021-01-12T15:19:51.751Z]  > git rev-list --no-walk 0604dcabdea23cd75ec3f045ff774a4753d4c7bb # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF apply env)
+[Pipeline] dir
+[2021-01-12T15:19:52.029Z] Running in /var/lib/jenkins/workspace/Jenkinsfile-s3-web/aws-tf/S3-web
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2021-01-12T15:19:52.165Z] Masking supported pattern matches of $AWS_ACCESS_KEY_ID or $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] sh
+[2021-01-12T15:19:52.493Z] + terraform init
+[2021-01-12T15:19:52.493Z] 
+[2021-01-12T15:19:52.493Z] [0m[1mInitializing the backend...[0m
+[2021-01-12T15:19:53.405Z] 
+[2021-01-12T15:19:53.405Z] [0m[1mInitializing provider plugins...[0m
+[2021-01-12T15:19:53.405Z] - Reusing previous version of hashicorp/aws from the dependency lock file
+[2021-01-12T15:19:53.957Z] - Installing hashicorp/aws v3.23.0...
+[2021-01-12T15:20:11.930Z] - Installed hashicorp/aws v3.23.0 (signed by HashiCorp)
+[2021-01-12T15:20:11.931Z] 
+[2021-01-12T15:20:11.931Z] [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[2021-01-12T15:20:11.931Z] [0m[32m
+[2021-01-12T15:20:11.932Z] You may now begin working with Terraform. Try running "terraform plan" to see
+[2021-01-12T15:20:11.932Z] any changes that are required for your infrastructure. All Terraform commands
+[2021-01-12T15:20:11.932Z] should now work.
+[2021-01-12T15:20:11.932Z] 
+[2021-01-12T15:20:11.932Z] If you ever set or change modules or backend configuration for Terraform,
+[2021-01-12T15:20:11.932Z] rerun this command to reinitialize your working directory. If you forget, other
+[2021-01-12T15:20:11.932Z] commands will detect it and remind you to do so if necessary.[0m
+[Pipeline] sh
+[2021-01-12T15:20:12.224Z] + terraform apply -auto-approve
+[2021-01-12T15:20:22.106Z] [0m[1maws_s3_bucket.s3-static-website-demo: Creating...[0m[0m
+[2021-01-12T15:20:31.986Z] [0m[1maws_s3_bucket.s3-static-website-demo: Still creating... [10s elapsed][0m[0m
+[2021-01-12T15:20:41.867Z] [0m[1maws_s3_bucket.s3-static-website-demo: Still creating... [20s elapsed][0m[0m
+[2021-01-12T15:20:41.867Z] [0m[1maws_s3_bucket.s3-static-website-demo: Creation complete after 20s [id=s3-static-website-demo][0m[0m
+[2021-01-12T15:20:42.117Z] [0m[1m[32m
+[2021-01-12T15:20:42.118Z] Apply complete! Resources: 1 added, 0 changed, 0 destroyed.[0m
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Upload to S3)
+Stage "Upload to S3" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF Destroy env)
+Stage "TF Destroy env" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

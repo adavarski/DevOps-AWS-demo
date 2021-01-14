@@ -1,0 +1,89 @@
+String awsCredentialsId = 'AWS-demo'
+
+pipeline {
+  agent any
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+  }
+
+parameters {
+   choice(choices: ['CREATE', 'UPLOAD', 'DESTROY'], description: 'Create or destroy  a Demo EC2 instance?', name: 'Action') 
+ }  
+  
+  stages {
+ 
+  
+      stage('Clone AWS Demo Repository') {
+      steps {
+        checkout([$class: 'GitSCM', 
+          branches: [[name: "main"]], 
+          doGenerateSubmoduleConfigurations: false,
+          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'aws-tf']],
+          submoduleCfg: [],
+          userRemoteConfigs: [[credentialsId: 'devops', url: 'git@github.com:adavarski/DevOps-AWS-demo.git']]
+        ])
+      }
+    }
+ 
+     stage('TF apply') {
+      when{ equals expected: "CREATE", actual: "${params.Action}"}
+      steps {
+        dir('aws-tf/S3-web') {
+          script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+             {
+             sh "terraform init"     
+             sh "terraform apply -auto-approve"
+             }
+            }
+          }
+        }
+      }
+ 
+ 
+      stage('Upload to S3') {
+      when{ equals expected: "UPLOAD", actual: "${params.Action}"}
+      steps {
+        dir('aws-tf/S3-web') {
+          script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+             {
+             sh " aws s3 cp ./index.html s3://s3-static-website-demo/ --acl public-read"
+             }
+            }
+          }
+        }
+      }
+      
+      stage('TF Destroy') {
+       when { equals expected: "DESTROY", actual: "${params.Action}" }
+        steps {
+            dir('aws-tf/S3-web'){
+            script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+             {
+             sh 'aws s3 rm s3://s3-static-website-demo/ --recursive'  
+             sh "terraform init"
+             sh "terraform destroy -auto-approve"
+             }
+             
+            }
+          }
+        }
+       }
+
+
+   }
+   
+}
+ 

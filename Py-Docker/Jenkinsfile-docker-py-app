@@ -1,0 +1,79 @@
+String awsCredentialsId = 'AWS-demo'
+
+def app
+registryCredential = 'docker-hub-credentials'
+    
+pipeline {
+  agent any
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+  }
+
+  stages {
+ 
+  
+      stage('Clone AWS Demo Repository') {
+      steps {
+        checkout([$class: 'GitSCM', 
+          branches: [[name: "main"]], 
+          doGenerateSubmoduleConfigurations: false,
+          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'aws-tf']],
+          submoduleCfg: [],
+          userRemoteConfigs: [[credentialsId: 'devops', url: 'git@github.com:adavarski/DevOps-AWS-demo.git']]
+        ])
+      }
+    }
+ 
+
+ 
+      stage('Build docker image') {
+      steps {
+        dir('aws-tf/Py-Docker') {
+          script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+             {
+             app = docker.build("davarski/rds-py")
+             }
+            }
+          }
+        }
+      }
+      
+      stage('Push docker image to DockerHub and AWS ECR') {
+        steps {
+            dir('aws-tf/Py-Docker'){
+            script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+             {
+            docker.withRegistry('', registryCredential) {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+            sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 218645542363.dkr.ecr.us-east-2.amazonaws.com"  
+            sh "docker tag `docker images|grep \"davarski/rds-py\"|grep latest|awk '{print \$3}'` 218645542363.dkr.ecr.us-east-2.amazonaws.com/demo-repo:latest"
+            sh "docker push 218645542363.dkr.ecr.us-east-2.amazonaws.com/demo-repo:latest"
+             }
+             
+            }
+          }
+        }
+       }
+
+
+   }
+   
+}
+}
+
+
+
+
+   
+
+

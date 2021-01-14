@@ -1,0 +1,85 @@
+Started by user Anastas Davarski
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Jenkinsfile-ECS
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone AWS Demo Repository)
+[Pipeline] checkout
+[2021-01-12T22:17:28.843Z] The recommended git tool is: NONE
+[2021-01-12T22:17:28.844Z] using credential devops
+[2021-01-12T22:17:28.864Z]  > git rev-parse --is-inside-work-tree # timeout=10
+[2021-01-12T22:17:28.881Z] Fetching changes from the remote Git repository
+[2021-01-12T22:17:28.881Z]  > git config remote.origin.url git@github.com:adavarski/DevOps-AWS-demo.git # timeout=10
+[2021-01-12T22:17:28.894Z] Fetching upstream changes from git@github.com:adavarski/DevOps-AWS-demo.git
+[2021-01-12T22:17:28.894Z]  > git --version # timeout=10
+[2021-01-12T22:17:28.902Z]  > git --version # 'git version 2.17.1'
+[2021-01-12T22:17:28.902Z] using GIT_SSH to set credentials Github devops 
+[2021-01-12T22:17:28.915Z]  > git fetch --tags --progress -- git@github.com:adavarski/DevOps-AWS-demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2021-01-12T22:17:31.231Z]  > git rev-parse origin/main^{commit} # timeout=10
+[2021-01-12T22:17:31.261Z] Checking out Revision 98be000ae2b2e4d5a846775d7ccc291692f71a1f (origin/main)
+[2021-01-12T22:17:31.261Z]  > git config core.sparsecheckout # timeout=10
+[2021-01-12T22:17:31.286Z]  > git checkout -f 98be000ae2b2e4d5a846775d7ccc291692f71a1f # timeout=10
+[2021-01-12T22:17:31.318Z] Commit message: "Create README.md"
+[2021-01-12T22:17:31.318Z]  > git rev-list --no-walk f4be73ee783cfd0526ae38e9a3608e28c0a82714 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF apply )
+Stage "TF apply " skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF Destroy)
+[Pipeline] dir
+[2021-01-12T22:17:31.834Z] Running in /var/lib/jenkins/workspace/Jenkinsfile-ECS/aws-tf/ECR
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2021-01-12T22:17:31.966Z] Masking supported pattern matches of $AWS_ACCESS_KEY_ID or $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] sh
+[2021-01-12T22:17:32.278Z] + terraform init
+[2021-01-12T22:17:33.190Z] 
+[2021-01-12T22:17:33.191Z] [0m[1mInitializing the backend...[0m
+[2021-01-12T22:17:33.742Z] 
+[2021-01-12T22:17:33.742Z] [0m[1mInitializing provider plugins...[0m
+[2021-01-12T22:17:33.742Z] - Reusing previous version of hashicorp/aws from the dependency lock file
+[2021-01-12T22:17:34.654Z] - Installing hashicorp/aws v3.23.0...
+[2021-01-12T22:17:52.620Z] - Installed hashicorp/aws v3.23.0 (signed by HashiCorp)
+[2021-01-12T22:17:52.620Z] 
+[2021-01-12T22:17:52.620Z] [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[2021-01-12T22:17:52.620Z] [0m[32m
+[2021-01-12T22:17:52.620Z] You may now begin working with Terraform. Try running "terraform plan" to see
+[2021-01-12T22:17:52.620Z] any changes that are required for your infrastructure. All Terraform commands
+[2021-01-12T22:17:52.621Z] should now work.
+[2021-01-12T22:17:52.621Z] 
+[2021-01-12T22:17:52.621Z] If you ever set or change modules or backend configuration for Terraform,
+[2021-01-12T22:17:52.621Z] rerun this command to reinitialize your working directory. If you forget, other
+[2021-01-12T22:17:52.621Z] commands will detect it and remind you to do so if necessary.[0m
+[Pipeline] sh
+[2021-01-12T22:17:52.947Z] + terraform destroy -auto-approve
+[2021-01-12T22:17:59.430Z] [0m[1maws_ecr_repository_policy.demo-repo-policy: Destroying... [id=demo-repo][0m[0m
+[2021-01-12T22:17:59.981Z] [0m[1maws_ecr_repository_policy.demo-repo-policy: Destruction complete after 1s[0m[0m
+[2021-01-12T22:17:59.981Z] [0m[1maws_ecr_repository.demo-repository: Destroying... [id=demo-repo][0m[0m
+[2021-01-12T22:18:02.466Z] [0m[1maws_ecr_repository.demo-repository: Destruction complete after 2s[0m[0m
+[2021-01-12T22:18:02.466Z] [0m[1m[32m
+[2021-01-12T22:18:02.466Z] Destroy complete! Resources: 2 destroyed.[0m
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

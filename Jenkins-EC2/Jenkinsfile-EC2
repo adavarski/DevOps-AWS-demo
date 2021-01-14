@@ -1,0 +1,87 @@
+String awsCredentialsId = 'AWS-demo'
+
+pipeline {
+  agent any
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+  }
+
+parameters {
+   choice(choices: ['CREATE', 'DESTROY'], description: 'Create or destroy  a Demo EC2 instance?', name: 'Action') 
+ }  
+  
+  stages {
+ 
+  
+      stage('Clone AWS Demo Repository') {
+      steps {
+        checkout([$class: 'GitSCM', 
+          branches: [[name: "main"]], 
+          doGenerateSubmoduleConfigurations: false,
+          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'aws-tf']],
+          submoduleCfg: [],
+          userRemoteConfigs: [[credentialsId: 'devops', url: 'git@github.com:adavarski/DevOps-AWS-demo.git']]
+        ])
+      }
+    }
+ 
+    stage('TF init') {
+      steps {
+        dir('aws-tf/Jenkins-EC2') {
+          script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+            {
+              sh "terraform init"
+            }
+            
+            }
+          }
+        }
+      }
+
+
+     stage('TF apply env') {
+      when{ equals expected: "CREATE", actual: "${params.Action}"}
+      steps {
+        dir('aws-tf/Jenkins-EC2') {
+          script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+             {
+             sh "terraform apply -auto-approve"
+             }
+            }
+          }
+        }
+      }
+ 
+ 
+      stage('TF Destroy env') {
+       when { equals expected: "DESTROY", actual: "${params.Action}" }
+        steps {
+            dir('aws-tf/Jenkins-EC2'){
+            script {
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: awsCredentialsId,
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+             {
+             sh "terraform destroy -auto-approve"
+             }
+             
+            }
+          }
+        }
+       }
+
+
+   }
+   
+}
+ 

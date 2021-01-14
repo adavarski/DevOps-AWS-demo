@@ -1,0 +1,66 @@
+Started by user Anastas Davarski
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Jenkinsfile-s3-web
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone AWS Demo Repository)
+[Pipeline] checkout
+[2021-01-12T15:22:01.482Z] The recommended git tool is: NONE
+[2021-01-12T15:22:01.482Z] using credential devops
+[2021-01-12T15:22:01.518Z]  > git rev-parse --is-inside-work-tree # timeout=10
+[2021-01-12T15:22:01.537Z] Fetching changes from the remote Git repository
+[2021-01-12T15:22:01.538Z]  > git config remote.origin.url git@github.com:adavarski/DevOps-AWS-demo.git # timeout=10
+[2021-01-12T15:22:01.544Z] Fetching upstream changes from git@github.com:adavarski/DevOps-AWS-demo.git
+[2021-01-12T15:22:01.544Z]  > git --version # timeout=10
+[2021-01-12T15:22:01.547Z]  > git --version # 'git version 2.17.1'
+[2021-01-12T15:22:01.547Z] using GIT_SSH to set credentials Github devops 
+[2021-01-12T15:22:01.554Z]  > git fetch --tags --progress -- git@github.com:adavarski/DevOps-AWS-demo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2021-01-12T15:22:05.522Z]  > git rev-parse origin/main^{commit} # timeout=10
+[2021-01-12T15:22:05.527Z] Checking out Revision 28e2a296a323b5b7d4d14dcf9ee064958937fedc (origin/main)
+[2021-01-12T15:22:05.527Z]  > git config core.sparsecheckout # timeout=10
+[2021-01-12T15:22:05.534Z]  > git checkout -f 28e2a296a323b5b7d4d14dcf9ee064958937fedc # timeout=10
+[2021-01-12T15:22:05.541Z] Commit message: "Create Jenkinsfile-s3-web"
+[2021-01-12T15:22:05.542Z]  > git rev-list --no-walk 28e2a296a323b5b7d4d14dcf9ee064958937fedc # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF apply env)
+Stage "TF apply env" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Upload to S3)
+[Pipeline] dir
+[2021-01-12T15:22:05.823Z] Running in /var/lib/jenkins/workspace/Jenkinsfile-s3-web/aws-tf/S3-web
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2021-01-12T15:22:05.949Z] Masking supported pattern matches of $AWS_ACCESS_KEY_ID or $AWS_SECRET_ACCESS_KEY
+[Pipeline] {
+[Pipeline] sh
+[2021-01-12T15:22:06.262Z] + aws s3 cp ./index.html s3://s3-static-website-demo/ --acl public-read
+[2021-01-12T15:22:14.291Z] Completed 344 Bytes/344 Bytes (124 Bytes/s) with 1 file(s) remainingupload: ./index.html to s3://s3-static-website-demo/index.html      
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (TF Destroy env)
+Stage "TF Destroy env" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
