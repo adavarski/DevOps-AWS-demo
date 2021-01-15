@@ -31,5 +31,5 @@ runcmd:
  - sudo apt install -y unzip
  - unzip /tmp/terraform_0.14.4_linux_amd64.zip
  - sudo mv terraform /usr/local/bin/
-#Install pkgs for (for J.docker pipeline plugin)
+#Install pkgs (for J.docker pipeline plugin)
  - sudo apt install -y gnupg2 pass 
