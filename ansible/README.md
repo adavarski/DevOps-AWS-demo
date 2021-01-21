@@ -14,7 +14,7 @@ sudo apt install ansible
     AWS_SECRET_ACCESS_KEY: "{{ aws_secret_key }}"
     AWS_REGION: "{{ aws_region }}"
 ```
-3.Create new Lambda role: Lambda_Full (AWS console->IAM:Roles) and Policy: AWSLambda_FullAccess and get role ARN (update create_resources.yml & delete-resources.yml with ARN)
+3.Create new Lambda role: Lambda_Full (AWS console->IAM:Roles) and Policy: AWSLambda_FullAccess and get role ARN (update create_resources.yml & delete-resources.yml with role ARN)
 
 ```
 $ aws iam get-role --role-name Lambda_Full
