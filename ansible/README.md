@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install ansible
 ```
 
-2.Install boto3 via pip3 and configure aws credentials (aws configure) or edit playbooks:
+2.Install boto3 via pip3 and configure aws cli credentials (aws configure) or edit playbooks:
 
 ```
 - hosts: localhost
