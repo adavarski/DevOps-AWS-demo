@@ -35,6 +35,7 @@
       write_capacity: 2
       tags:
         Name: Demo_Dynamo_DB_table
+        
   - name: Create lambda in AWS
     lambda:
       name: "Ping"
