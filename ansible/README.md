@@ -1,5 +1,12 @@
-1.Install ansible
-2.Pip install boto and configure aws credentials (aws configure)
+1.Install ansible 
+```
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install ansible
+```
+
+2.Install boto via pip3 and configure aws credentials (aws configure)
+
 3.Create AWS resources:
 ```
 ansible-playbook create_resources.yml
