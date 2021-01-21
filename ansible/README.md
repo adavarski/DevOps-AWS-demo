@@ -230,16 +230,22 @@ localhost                  : ok=5    changed=4    unreachable=0    failed=0    s
 ```
 5.Check AWS resources
 
+Example output:
+
 ```
-$ aws dynamodb list-tables
-{
-    "TableNames": []
-}
+$ aws s3api list-buckets --query "Buckets[].Name"
+[]
 
 $ aws rds describe-db-instances 
 {
     "DBInstances": []
 }
+
+$ aws dynamodb list-tables
+{
+    "TableNames": []
+}
+
 $ aws lambda list-functions --max-items 10
 {
     "Functions": []
