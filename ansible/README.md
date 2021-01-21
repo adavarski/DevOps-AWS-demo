@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install ansible
 ```
 
-2.Install boto3 via pip3 and configure aws credentials (aws configure) or edit playnooks:
+2.Install boto3 via pip3 and configure aws credentials (aws configure) or edit playbooks:
 
 ```
 - hosts: localhost
@@ -14,7 +14,9 @@ sudo apt install ansible
     AWS_SECRET_ACCESS_KEY: "{{ aws_secret_key }}"
     AWS_REGION: "{{ aws_region }}"
 ```
-3.Create new Lambda role: Lambda_Full (AWS console->IAM:Roles) and Policy: AWSLambda_FullAccess and get role ARN (update create_resources.yml & delete-resources.yml with role ARN)
+Note: Better use ansible vault for AWS credentials/config.
+
+3.Create new IAM role (AWS console->IAM:Roles): Lambda_Full with Policy: AWSLambda_FullAccess and get role ARN (update create_resources.yml & delete-resources.yml with role ARN)
 
 ```
 $ aws iam get-role --role-name Lambda_Full
