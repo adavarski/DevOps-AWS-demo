@@ -5,9 +5,49 @@ sudo apt update
 sudo apt install ansible
 ```
 
-2.Install boto3 via pip3 and configure aws credentials (aws configure)
+2.Install boto3 via pip3 and configure aws credentials (aws configure) or edit playnooks:
 
-3.Create AWS resources:
+```
+- hosts: localhost
+  environment:
+    AWS_ACCESS_KEY_ID: "{{ aws_access_key }}"
+    AWS_SECRET_ACCESS_KEY: "{{ aws_secret_key }}"
+    AWS_REGION: "{{ aws_region }}"
+```
+3.Create new Lambda role: Lambda_Full (AWS console->IAM:Roles) and Policy: AWSLambda_FullAccess and get role ARN (update create_resources.yml & delete-resources.yml with ARN)
+
+```
+$ aws iam get-role --role-name Lambda_Full
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "Lambda_Full",
+        "RoleId": "AROATF2CKGXNU4IKJCM54",
+        "Arn": "arn:aws:iam::218645542363:role/Lambda_Full",
+        "CreateDate": "2021-01-21T11:57:06Z",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "Allows Lambda functions to call AWS services on your behalf.",
+        "MaxSessionDuration": 3600,
+        "RoleLastUsed": {
+            "LastUsedDate": "2021-01-21T12:37:37Z",
+            "Region": "us-east-2"
+        }
+    }
+}
+```
+
+4.Create AWS resources:
 ```
 ansible-playbook create_resources.yml
 ```
@@ -38,7 +78,7 @@ changed: [localhost]
 PLAY RECAP ******************************************************************************************************************************************************************
 localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
-4.Check AWS resources:
+5.Check AWS resources:
 ```
 aws s3 cp ./ping.py s3://s3bucket-ansible/
 aws s3 ls s3://s3bucket-ansible/
@@ -197,7 +237,7 @@ END RequestId: 8d09f5fa-00a2-45bf-8c0f-1f7b876bef2b
 REPORT RequestId: 8d09f5fa-00a2-45bf-8c0f-1f7b876bef2b	Duration: 30111.46 ms	Billed Duration: 30112 ms	Memory Size: 128 MB	Max Memory Used: 45 MB	Init Duration: 1.28 ms	
 
 ```
-4.Cleaning AWS resources: 
+6.Cleaning AWS resources: 
 ```
 ansible-playbook destroy_resources.yml
 ```
@@ -228,7 +268,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 ```
-5.Check AWS resources
+7.Check AWS resources
 
 Example output:
 
