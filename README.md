@@ -139,5 +139,5 @@ Create J.pipelines (@ Jenkins AWS EC2 VM):
 #### Jenkinsfile-s3-website-static pipeline: https://github.com/adavarski/DevOps-AWS-demo/blob/main/S3-web/Jenkinsfile-s3-web
 
 
-## Note: [Create/Destroy AWS resources with Ansible:Examples](https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible)
+## Note: [Create/Destroy AWS resources with Ansible:Simple Tasks](https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible)
 
