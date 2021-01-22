@@ -2,7 +2,7 @@
 
 Pre: Register a free AWS account (the demo will fit into the 12 month free tier).
 
-Tasks:
+Simple Tasks:
 
 - Create an EC2, and install Jenkins (also docker, awscli, terraform, etc.) on it (Terraform & J.Pipeline)
 - Create a Container Registry to hold container image (Terraform & J.Pipeline)
@@ -139,5 +139,5 @@ Create J.pipelines (@ Jenkins AWS EC2 VM):
 #### Jenkinsfile-s3-website-static pipeline: https://github.com/adavarski/DevOps-AWS-demo/blob/main/S3-web/Jenkinsfile-s3-web
 
 
-## Note: [Create/Destroy AWS resources with Ansible:Example](https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible)
+## Note: [Create/Destroy AWS resources with Ansible:Examples](https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible)
 
