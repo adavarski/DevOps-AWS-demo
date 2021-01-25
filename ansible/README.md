@@ -379,3 +379,4 @@ $ aws lambda list-functions --max-items 10
 $ aws lambda invoke --function-name Ping out --log-type Tail --query 'LogResult' --output text |  base64 -d
 $ aws s3api list-buckets --query "Buckets[].Name"
 ```
+Ref: Ansible Tower screenshots -> https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible/pictures
