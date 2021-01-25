@@ -1,5 +1,5 @@
 
-#### Simple Tasks(manual):
+## Simple Tasks:
 
 - Free Tier Amazon S3 bucket
 - Free Tier Amazon RDS PostgreSQL
@@ -7,7 +7,7 @@
 CREATE TABLE Music ( Artist VARCHAR(20) NOT NULL, SongTitle VARCHAR(30) NOT NULL, AlbumTitle VARCHAR(25), Year INT, Price FLOAT, Genre VARCHAR(10), Tags TEXT, PRIMARY KEY(Artist, SongTitle) );
 - Create an AWS Lambda function using Python runtime to ping google.com once every 10 secs for 5 minutes continuously.
 
-
+### Manual (create/destroy AWS resources)
 
 1.Install ansible 
 ```
@@ -304,7 +304,7 @@ $ aws lambda list-functions --max-items 10
     "Functions": []
 }
 ```
-#### Ansible Tower (AWX) CI/CD (docker-compose based install)
+#### CI/CD : via Ansible Tower (AWX: docker-compose based install) 
 
 ```
 pip3 install docker-compose
