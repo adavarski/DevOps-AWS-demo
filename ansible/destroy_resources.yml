@@ -10,6 +10,7 @@
   tasks:
   - name: Destroy Dynamo DB table
     dynamodb_table:
+      region: us-east-2    
       name: Music
       state: "{{ state }}"
       hash_key_name: Artist
