@@ -22,6 +22,8 @@
       password: "{{ password }}"
       username: "{{ username }}"
       skip_final_snapshot: yes
+      region: 'us-east-2'
+
       
   - name: Create Dynamo DB table
     dynamodb_table:
@@ -46,4 +48,6 @@
       role: 'arn:aws:iam::218645542363:role/Lambda_Full'
       handler: 'ping.lambda_handler'
       timeout: 350
+      region: 'us-east-2'
+
 
