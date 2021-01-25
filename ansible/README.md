@@ -1,5 +1,5 @@
 
-#### Simple Tasks:
+#### Simple Tasks(manual):
 
 - Free Tier Amazon S3 bucket
 - Free Tier Amazon RDS PostgreSQL
