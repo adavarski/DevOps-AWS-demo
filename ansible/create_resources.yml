@@ -9,6 +9,7 @@
   - name: Create Dynamo DB table
     dynamodb_table:
       name: Music
+      region: us-east-2    
       state: "{{ state }}"
       hash_key_name: Artist
       hash_key_type: STRING
