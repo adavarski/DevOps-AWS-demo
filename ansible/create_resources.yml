@@ -6,8 +6,17 @@
     password: postgres-password
     username: postgres
 
-  tasks:
-  - name: Create Free Tier Amazon Bucket
-    s3_bucket:
-      name: s3bucket-ansible
+  - name: Create Dynamo DB table
+    dynamodb_table:
+      name: Music
+      region: 'us-east-2'
       state: "{{ state }}"
+      hash_key_name: Artist
+      hash_key_type: STRING
+      range_key_name: SongTitle
+      range_key_type: STRING
+      read_capacity: 2
+      write_capacity: 2
+      tags:
+        Name: Demo_Dynamo_DB_table
+
