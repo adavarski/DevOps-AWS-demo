@@ -380,3 +380,35 @@ $ aws lambda invoke --function-name Ping out --log-type Tail --query 'LogResult'
 $ aws s3api list-buckets --query "Buckets[].Name"
 ```
 Ref: Ansible Tower screenshots -> https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible/pictures
+
+Stop/Start Ansible Tower:
+```
+$ cd ~/.awx/awxcompose/
+$ docker-compose down 
+Stopping awx_task     ... done
+Stopping awx_web      ... done
+Stopping awx_postgres ... done
+Stopping awx_redis    ... done
+Removing awx_task     ... done
+Removing awx_web      ... done
+Removing awx_postgres ... done
+Removing awx_redis    ... done
+Removing network awxcompose_default
+$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+$ docker-compose up -d
+Creating network "awxcompose_default" with the default driver
+Creating awx_redis    ... done
+Creating awx_postgres ... done
+Creating awx_web      ... done
+Creating awx_task     ... done
+$ docker ps -a
+CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                  NAMES
+a9ae5dfead6f        ansible/awx:17.0.0   "/usr/bin/tini -- /u…"   About a minute ago   Up About a minute   8052/tcp               awx_task
+d41a3c782e67        ansible/awx:17.0.0   "/usr/bin/tini -- /b…"   About a minute ago   Up About a minute   0.0.0.0:80->8052/tcp   awx_web
+e1ec438406d4        postgres:12          "docker-entrypoint.s…"   About a minute ago   Up About a minute   5432/tcp               awx_postgres
+123e321b3b4d        redis                "docker-entrypoint.s…"   About a minute ago   Up About a minute   6379/tcp               awx_redis
+
+```
+
+
