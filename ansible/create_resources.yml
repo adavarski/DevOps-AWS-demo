@@ -5,7 +5,7 @@
     state: present
     password: postgres-password
     username: postgres
-
+  tasks:
   - name: Create Dynamo DB table
     dynamodb_table:
       name: Music
