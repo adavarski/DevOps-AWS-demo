@@ -139,7 +139,7 @@ Create J.pipelines (@ Jenkins AWS EC2 VM):
 #### Jenkinsfile-s3-website-static pipeline: https://github.com/adavarski/DevOps-AWS-demo/blob/main/S3-web/Jenkinsfile-s3-web
 
 
-## 3.Docker + ansible (using docker+ansible for CI/CD pipelines) 
+## 3.Docker + Ansible (using docker+ansible for CI/CD pipelines) 
 ### AWS docker+ansible Provisioner/Decommissioner
 
 Provisions AWS services/resources: S3 bucket, Postgres RDS, DynamoDB table, etc. .
