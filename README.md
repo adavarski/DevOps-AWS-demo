@@ -1,4 +1,4 @@
-# IaC & CI/CD tools used for this demo: Terraform, Jenkins, Docker, Git/GitHub, Ansible/AnsibleTower(AWX)
+## IaC & CI/CD tools used for this demo: Terraform, Jenkins, Docker, Git/GitHub, Ansible/AnsibleTower(AWX)
 
 Pre: Register a free AWS account (the demo will fit into the 12 month free tier).
 
