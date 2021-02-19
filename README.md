@@ -232,7 +232,7 @@ $ aws rds describe-db-instances
 $ aws dynamodb list-tables
 ```
 
-## 4.Ansible -> Manual & CI/CD: Ansible Tower(AWX)
+## 4.Ansible -> Manual & Ansible Tower(AWX) CI/CD
 
 [Create/Destroy AWS resources with Ansible:Simple Tasks->Manual and CI/CD:Ansible Tower(AWX)](https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible)
 
