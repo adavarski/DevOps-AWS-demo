@@ -1,8 +1,8 @@
-# AWS docker+ansible Provisioner
+### AWS docker+ansible Provisioner/Decommissioner
 
 Provisions AWS services/resources: S3 bucket, Postgres RDS, DynamoDB table, etc. .
 
-## Provisioning services/resources
+#### Provisioning services/resources
 
 ```sh
 
@@ -17,7 +17,7 @@ export AWS_REGION="us-east-2"
 make provision-resources
 ```
 
-## Decommissioning servcies/resources
+#### Decommissioning servcies/resources
 
 ```sh
 
