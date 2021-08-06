@@ -1,42 +1,8 @@
 # AWS CLI Cheatsheet
 
 http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html
-https://www.youtube.com/watch?v=_wiGpBQGCjU
 
 
-
-
-
-## Setup
-
-### Overview
-- Virtualbox
-- Ubuntu 14.04 LTS VM, 64-bit
-http://releases.ubuntu.com/14.04/ubuntu-14.04.4-desktop-amd64.iso
-- create new machine, settings
-  - System / Processor
-    - Enable PAE/NX
-  - System / Acceleration
-    - Paravirtualization Interface: Default
-    - Enable VT-x/AMD-V
-    - Enable Nested Paging
-  - Display / Screen
-    - Video Memory: 128MB
-    - Acceleration: Enable 3D Acceleration
-- boot
-- install
-
-### install Virtualbox Guest Additions, passwordless sudo
-```shell
-echo $USER
-sudo echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers
-sudo su
-apt-get update
-apt-get install -y build-essential dkms linux-headers-$(uname -r)
-cd /media/aws-admin/
-sh ./VBoxLinuxAdditions.run
-shutdown now
-```
 
 ### install AWS CLI
 ```shell
@@ -45,33 +11,6 @@ sudo pip install awscli
 aws --version
 aws configure
 ```
-
-### Bash one-liners
-```shell
-cat <file> # output a file
-tee # split output into a file
-cut -f 2 # print the 2nd column, per line
-sed -n '5{p;q}' # print the 5th line in a file
-sed 1d # print all lines, except the first
-tail -n +2 # print all lines, starting on the 2nd
-head -n 5 # print the first 5 lines
-tail -n 5 # print the last 5 lines
-
-expand # convert tabs to 4 spaces
-unexpand -a # convert 4 spaces to tabs
-wc # word count
-tr ' ' \\t # translate / convert characters to other characters
-
-sort # sort data
-uniq # show only unique entries
-paste # combine rows of text, by line
-join # combine rows of text, by initial column value
-```
-<br/><br/><br/>
-
-
-
-
 
 ## Cloudtrail - Logging and Auditing
 
