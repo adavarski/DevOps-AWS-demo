@@ -238,3 +238,5 @@ $ aws dynamodb list-tables
 
 ## 5. k8s provisioning on AWS (KOPS & AWS EKS managed k8s with Terraform) -> Ref: https://github.com/adavarski/aws-k8s-demo
 
+## 6. Provisioning development Amazon EKS clusters using Cloudformation: https://github.com/adavarski/aws-eks-cloudformation-demo
+
