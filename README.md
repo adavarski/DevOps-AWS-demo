@@ -236,7 +236,7 @@ $ aws dynamodb list-tables
 
 [Create/Destroy AWS resources with Ansible:Simple Tasks->Manual and CI/CD:Ansible Tower(AWX)](https://github.com/adavarski/DevOps-AWS-demo/tree/main/ansible)
 
-## 5. k8s provisioning on AWS wit Terrafrom (KOPS & AWS EKS managed k8s) -> Ref: https://github.com/adavarski/aws-k8s-demo
+## 5. k8s provisioning on AWS with Terrafrom (KOPS & AWS EKS managed k8s) -> Ref: https://github.com/adavarski/aws-k8s-demo & https://github.com/adavarski/aws-eks-production
 
 ## 6. Provisioning development Amazon EKS clusters using Cloudformation -> Ref: https://github.com/adavarski/aws-eks-cloudformation-demo
 
