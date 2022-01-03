@@ -202,6 +202,7 @@ EOF
 }
 ```
 
+Jenkins initialization:
 ```
 $ aws ec2 describe-instances   --filter 'Name=instance-state-name,Values=running' |   jq -r '.Reservations[].Instances[] | [.InstanceId, .PublicDnsName, .Tags[].Value] | @json'
 ["i-02015fceae96e0349","ec2-13-59-245-11.us-east-2.compute.amazonaws.com","Instance for DevOps demo"]
