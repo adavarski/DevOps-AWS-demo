@@ -109,13 +109,14 @@ https://github.com/adavarski/DevOps-AWS-demo/blob/main/Jenkins-EC2/J-console-out
  
  Example output: https://github.com/adavarski/DevOps-AWS-demo/blob/main/Jenkins-EC2/J-console-output/consoleText-CREATE-J.EC2-VM
  
- Note: IAM EC2 Roles are the recommended way to grant your application access to AWS services. As an example, let us assume we had a web app running on our web server EC2 instance and it needs to be able to upload assets to S3. A quick way of satisfying that requirement would be to create a set of IAM access keys and
+Note IAM Roles: IAM EC2 Roles are the recommended way to grant your application access to AWS services. As an example, let us assume we had a web app running on our web server EC2 instance and it needs to be able to upload assets to S3. A quick way of satisfying that requirement would be to create a set of IAM access keys and
 hardcode those into the application or its configuration. This however means that from that moment on it might not be very easy to update those keys unless we perform an app/config deployment. Furthermore, we might for one reason or another end up re-using the same set of keys with other applications. The security implications are evident: reusing keys increases our exposure if those get compromised and having them hardcoded greatly increases our reaction time (it takes more effort to rotate such keys). An alternative to the preceding method would be to use Roles. We would create an EC2 Role, grant it write access to the S3 bucket and assign it to the web server EC2 instance. Once the instance has booted, it is given temporary credentials which can be found in its metadata and which get changed at regular intervals. We can now instruct our web app to retrieve the current set of credentials from the instance metadata and use those to carry out
 the S3 operations. If we were to use the AWS CLI on that instance, we would notice that it fetches the said metadata credentials by default. Roles can be associated with instances only at launch time, so it is a good habit to assign one to all your hosts even if they do not need it right away.
 Roles can be used to assume other roles, making it possible for your instances to temporarily escalate their privileges by assuming a different role within your account or even across AWS accounts (ref: http://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html ). Example: 
 
-Note Example: 
+Note (Example): 
 ```
+...
 resource "aws_iam_role" "jenkins" {
     name = "jenkins"
     path = "/"
@@ -199,7 +200,8 @@ EOF
 
     lifecycle { create_before_destroy = true }
 }
- 
+```
+
 ```
 $ aws ec2 describe-instances   --filter 'Name=instance-state-name,Values=running' |   jq -r '.Reservations[].Instances[] | [.InstanceId, .PublicDnsName, .Tags[].Value] | @json'
 ["i-02015fceae96e0349","ec2-13-59-245-11.us-east-2.compute.amazonaws.com","Instance for DevOps demo"]
