@@ -33,7 +33,7 @@ latest: digest: sha256:b3eb87a38a9f89bda06bbb1f2087cc8b4f4ed5e94b802bee173d5f256
 
 ```
 
-Note: Amazon ECR Docker Credential Helper REF: https://github.com/awslabs/amazon-ecr-credential-helper (The Amazon ECR Docker Credential Helper is a credential helper for the Docker daemon that makes it easier to use Amazon Elastic Container Registry.)
+Note: Amazon ECR Docker Credential Helper -> REF: https://github.com/awslabs/amazon-ecr-credential-helper (The Amazon ECR Docker Credential Helper is a credential helper for the Docker daemon that makes it easier to use Amazon Elastic Container Registry.)
 
 Example:
 ```
