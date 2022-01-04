@@ -61,6 +61,6 @@ region = us-east-1
 
 $ export AWS_PROFILE=k8
 
-$ docker tag 370606747023.dkr.ecr.eu-central-1.amazonaws.com/web-php 462258654434.dkr.ecr.eu-west-1.amazonaws.com/web-php
-$ docker push 462258654434.dkr.ecr.eu-west-1.amazonaws.com/web-php
+$ docker tag web-php 218645542363.dkr.ecr.eu-west-1.amazonaws.com/web-php
+$ docker push 218645542363.dkr.ecr.eu-west-1.amazonaws.com/web-php
 ```
